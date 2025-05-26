@@ -6,6 +6,7 @@ import { AuthModule } from './auth/auth.module';
 import { ProductsModule } from './products/products.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { PRODUCT_IMAGES } from './products/dto/product-images';
 
 @Module({
   imports: [
@@ -31,7 +32,7 @@ import { join } from 'path';
       inject: [ConfigService],
     }),
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'uploads'),
+      rootPath: join(__dirname, '..', 'public'),
     }),
     ConfigModule.forRoot(),
     UsersModule,
