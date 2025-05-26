@@ -5,6 +5,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 @Injectable()
 export class ProductsService {
   constructor(private readonly prismaService: PrismaService) {}
+
   async createProduct(data: CreateProductRequest, userId: number) {
     return this.prismaService.product.create({
       data: {
@@ -12,5 +13,9 @@ export class ProductsService {
         userId,
       },
     });
+  }
+
+  async getProducts() {
+    return this.prismaService.product.findMany();
   }
 }
