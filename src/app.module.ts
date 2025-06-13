@@ -7,6 +7,7 @@ import { ProductsModule } from './products/products.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { PRODUCT_IMAGES } from './products/dto/product-images';
+import { CheckoutModule } from './checkout/checkout.module';
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import { PRODUCT_IMAGES } from './products/dto/product-images';
     UsersModule,
     AuthModule,
     ProductsModule,
+    CheckoutModule,
   ],
   controllers: [],
   providers: [],
