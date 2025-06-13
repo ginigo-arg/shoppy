@@ -22,7 +22,7 @@ export class CheckoutService {
               name: product.name,
               description: product.description,
               images: product.imageExist
-                ? [`http://localhost:3000/images/products/${product.id}.jpg`]
+                ? [`http://localhost:3001/images/products/${product.id}.jpg`]
                 : [],
             },
           },
