@@ -11,5 +11,6 @@ phases:
       - pnpm prisma generate
       - pnpm build
 artifacts:
+  base-directory: dist
   files:
     - '**/*'
