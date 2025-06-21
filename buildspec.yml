@@ -8,7 +8,7 @@ phases:
   build:
     commands:
       - npx prisma generate
-      - npm build
+      - npm run build
 artifacts:
   files:
     - '**/*'
