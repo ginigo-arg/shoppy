@@ -12,10 +12,9 @@ async function bootstrap() {
   app.use(cookieParser());
   const configService = app.get(ConfigService);
   const origin =
-    configService.get<string>('PRODUCTION_ORIGIN') ||
-    'https://shoppy-ui.ginigo.dev';
+    configService.get<string>('ORIGIN') || 'https://shoppy-ui.ginigo.dev';
   app.enableCors({ origin, credentials: true });
-  await app.listen(app.get(ConfigService).getOrThrow('PORT'));
+  await app.listen(app.get(ConfigService).getOrThrow('PORT'), '127.0.0.1');
   console.log(`🚀 Application is running on: ${await app.getUrl()}`);
 }
 bootstrap();
