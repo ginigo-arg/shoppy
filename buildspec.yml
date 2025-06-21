@@ -7,7 +7,7 @@ phases:
       - npm install
   build:
     commands:
-      - npm prisma generate
+      - npx prisma generate
       - npm build
 artifacts:
   files:
