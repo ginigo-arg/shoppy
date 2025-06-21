@@ -6,27 +6,22 @@ import Stripe from 'stripe';
 export class CheckoutService {
   constructor(
     private readonly stripe: Stripe,
-    private readonly productsService: ProductsService,
+    private readonly productService: ProductsService,
     private readonly configService: ConfigService,
   ) {}
 
   async createSession(productId: number) {
-    const product = await this.productsService.getProductById(productId);
+    const product = await this.productService.getProduct(productId);
     return this.stripe.checkout.sessions.create({
-      metadata: {
-        productId,
-      },
+      metadata: { productId },
       line_items: [
         {
           price_data: {
             currency: 'usd',
-            unit_amount: product.price * 100, // Stripe expects amount in cents
+            unit_amount: product.price * 100,
             product_data: {
               name: product.name,
               description: product.description,
-              images: product.imageExist
-                ? [`http://localhost:3001/images/products/${product.id}.jpg`]
-                : [],
             },
           },
           quantity: 1,
@@ -47,7 +42,7 @@ export class CheckoutService {
       event.data.object.id,
     );
 
-    await this.productsService.update(parseInt(session.metadata.productId), {
+    await this.productService.update(parseInt(session.metadata.productId), {
       sold: true,
     });
 
