@@ -5,11 +5,8 @@ import {
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
 import { AuthService } from 'src/auth/auth.service';
-@WebSocketGateway({
-  cors: {
-    origin: '*',
-  },
-})
+const origin = process.env.ORIGIN;
+@WebSocketGateway({ cors: { origin, credentials: true } })
 export class ProductGateway {
   constructor(private readonly authService: AuthService) {}
 
